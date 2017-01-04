@@ -5,6 +5,8 @@ mkdir -p wp-content/themes
 mkdir -p wp-content/plugins
 
 # Checkout/update VIP plugins
+echo
+echo "Checking out VIP Plugins..."
 if [ -d "wp-content/themes/vip/plugins" ]; then
 	svn up wp-content/themes/vip/plugins
 else
@@ -13,9 +15,17 @@ else
 fi
 
 # Update containers
+echo
+echo "Updating containers"
 docker-compose pull
 if [ -f ../docker-custom.yml ]; then
 	docker-compose -f docker-compose.yml -f docker-custom.yml up -d
 else
 	docker-compose up -d
 fi
+
+echo
+echo "Done"
+
+echo
+grep "wp.local" /etc/hosts > /dev/null || echo 'Be sure to add `127.0.0.1 wp.local` to your /etc/hosts file'
