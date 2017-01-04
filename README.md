@@ -52,7 +52,7 @@ php:
 
 ## FAQ
 
-Can I maintain the Database between updates?
+#### Can I maintain the Database between updates?
 
 Yes! Add the following to the mysql section in `docker-custom.yml`
 
