@@ -5,3 +5,5 @@ wp-config/secrets.php
 
 # Database
 .data
+
+docker-custom.yml
