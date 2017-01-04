@@ -2,6 +2,8 @@
 
 ## Requirements
 
+* git
+* svn
 * Docker
 * docker-compose
 
