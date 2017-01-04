@@ -19,6 +19,12 @@ Stop:
 docker-compose down
 ```
 
+## Updates
+
+1. `git pull
+1. `docker pull`
+1. `docker up -d`
+
 ## Run WP-CLI Commands
 
 1. `docker ps`
