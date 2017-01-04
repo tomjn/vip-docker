@@ -10,10 +10,10 @@
 Start:
 
 ```
-bin/vip
+bin/up
 ```
 
-Although it's not recommended, you can also use:
+Although it's not recommended, you can alternatively use:
 
 ```
 docker-compose up -d
