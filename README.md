@@ -10,6 +10,12 @@
 Start:
 
 ```
+bin/vip
+```
+
+Although it's not recommended, you can also use:
+
+```
 docker-compose up -d
 ```
 
@@ -21,9 +27,7 @@ docker-compose down
 
 ## Updates
 
-1. `git pull
-1. `docker pull`
-1. `docker up -d`
+1. `bin/up`
 
 ## Run WP-CLI Commands
 

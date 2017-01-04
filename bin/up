@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Checkout/update VIP plugins
+if [ -d "wp-content/themes/vip/plugins" ]; then
+	svn up wp-content/themes/vip/plugins
+else
+	mkdir -p wp-content/themes/vip
+	svn co https://vip-svn.wordpress.com/plugins/ wp-content/themes/vip/plugins
+fi
+
+# Update containers
+docker-compose pull
+if [ -f ../docker-custom.yml ]; then
+	docker-compose -f docker-compose.yml -f docker-custom.yml up -d
+else
+	docker-compose up -d
+fi
