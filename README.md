@@ -49,3 +49,15 @@ php:
         WP_ADMIN_USER: me
         WP_EMAIL: me@example.com
 ```
+
+## FAQ
+
+Can I maintain the Database between updates?
+
+Yes! Add the following to the mysql section in `docker-custom.yml`
+
+```
+mysql:
+	volumes:
+		- ".data:/var/lib/mysql"
+```
