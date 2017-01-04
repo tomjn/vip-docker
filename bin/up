@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Ensure the plugin and theme directories exist
+mkdir -p wp-content/themes
+mkdir -p wp-content/plugins
+
 # Checkout/update VIP plugins
 if [ -d "wp-content/themes/vip/plugins" ]; then
 	svn up wp-content/themes/vip/plugins
