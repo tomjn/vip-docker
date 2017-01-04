@@ -5,6 +5,20 @@
 * Docker
 * docker-compose
 
+## Usage
+
+Start:
+
+```
+docker-compose up -d
+```
+
+Stop:
+
+```
+docker-compose down
+```
+
 ## Deploying
 
 To deploy to a public environment, define the following environment
