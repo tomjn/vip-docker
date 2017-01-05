@@ -19,9 +19,9 @@ echo
 echo "Updating containers"
 docker-compose pull
 if [ -f ../docker-custom.yml ]; then
-	docker-compose -f docker-compose.yml -f docker-custom.yml up -d
+	docker-compose -f docker-compose.yml -f docker-custom.yml up --build -d
 else
-	docker-compose up -d
+	docker-compose up --build -d
 fi
 
 echo
