@@ -6,7 +6,7 @@ php:
 nginx:
     restart: on-failure
     ports:
-        - "8000:8000"
+        - "8000:80"
 
 mysql:
     restart: on-failure
