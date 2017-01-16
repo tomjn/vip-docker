@@ -1,6 +1,7 @@
 wp-content/plugins
 wp-content/themes
 wp-content/uploads
+wp-content/upgrade
 wp-config/secrets.php
 
 # Database
