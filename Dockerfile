@@ -2,11 +2,16 @@ FROM php:fpm
 
 # Install memcached for PHP 7
 RUN apt-get update && apt-get install -y \
+    mariadb-client \
+    libpng12-dev \
+    libjpeg-dev \
     libpq-dev \
     libmemcached-dev \
     curl \
     git \
-    subversion
+    subversion && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
+    && docker-php-ext-install gd mysqli opcache
 
 RUN yes | pecl install xdebug \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
@@ -19,11 +24,6 @@ RUN curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-m
     && docker-php-ext-configure memcached \
     && docker-php-ext-install memcached \
     && rm /tmp/memcached.tar.gz
-
-# install the PHP extensions we need for WordPress
-RUN apt-get update && apt-get install -y mariadb-client libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
-	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-	&& docker-php-ext-install gd mysqli opcache
 
 ENV WORDPRESS_VERSION 4.7.1
 ENV WORDPRESS_SHA1 8e56ba56c10a3f245c616b13e46bd996f63793d6
