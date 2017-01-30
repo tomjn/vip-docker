@@ -6,6 +6,7 @@ services:
             - mysql
             - memcached
         volumes:
+            - "./wordpress:/var/www/html/wwordpress"
             - "./wp-content:/var/www/html/wp-content"
             - "./wp-config:/var/www/html/wp-config:ro"
         environment:
@@ -21,6 +22,7 @@ services:
     nginx:
         image: nginx:mainline
         volumes:
+            - "./wordpress:/var/www/html/wordpress:ro"
             - "./wp-content:/var/www/html/wp-content:ro"
             - ".docker/nginx.template:/etc/nginx/conf.d/wordpress.template:ro"
         volumes_from:

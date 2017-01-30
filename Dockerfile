@@ -32,9 +32,9 @@ RUN yes | pecl install xdebug \
 
 COPY .docker/php.ini /usr/local/etc/php/conf.d/wordpress.ini
 
-COPY .docker/wp-config.php /usr/src/wordpress
-VOLUME /usr/src/wordpress
-WORKDIR /usr/src/wordpress
+COPY .docker/wp-config.php /var/www/html/wordpress
+VOLUME /var/www/html/wordpress
+WORKDIR /var/www/html/wordpress
 
 # Install wp-cli
 RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar \
