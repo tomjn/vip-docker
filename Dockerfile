@@ -30,15 +30,6 @@ RUN yes | pecl install xdebug \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
 
-ENV WORDPRESS_VERSION 4.7.1
-ENV WORDPRESS_SHA1 8e56ba56c10a3f245c616b13e46bd996f63793d6
-
-RUN curl -o wordpress.tar.gz -SL https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz \
-	&& echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c - \
-	&& tar -xzf wordpress.tar.gz -C /usr/src/ \
-	&& rm wordpress.tar.gz \
-	&& chown -R www-data:www-data /usr/src/wordpress
-
 COPY .docker/php.ini /usr/local/etc/php/conf.d/wordpress.ini
 
 COPY .docker/wp-config.php /usr/src/wordpress

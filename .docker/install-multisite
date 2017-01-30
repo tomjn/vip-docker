@@ -23,6 +23,8 @@ done
 
 echo "Database is available. Continuing"
 
+wp core download --path=/usr/src/wordpress
+
 if ! $(wp core is-installed --allow-root --path=/usr/src/wordpress); then
     wp core multisite-install \
         --allow-root \
