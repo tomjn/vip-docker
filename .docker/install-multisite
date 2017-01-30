@@ -37,39 +37,39 @@ if ! $(wp core is-installed --allow-root --path=/usr/src/wordpress); then
 fi
 
 # Ensure the plugin and theme directories exist
-mkdir -p wp-content/themes
-mkdir -p wp-content/plugins
+mkdir -p /var/www/html/wp-content/themes
+mkdir -p /var/www/html/wp-content/plugins
 
 # Checkout/update VIP plugins
 echo
 echo "Checking out VIP Plugins..."
-if [ -d "wp-content/themes/vip/plugins" ]; then
-  svn up wp-content/themes/vip/plugins
+if [ -d "/var/www/html/wp-content/themes/vip/plugins" ]; then
+  svn up /var/www/html/wp-content/themes/vip/plugins
 else
-  mkdir -p wp-content/themes/vip
-  svn co https://vip-svn.wordpress.com/plugins/ wp-content/themes/vip/plugins
+  mkdir -p /var/www/html/wp-content/themes/vip
+  svn co https://vip-svn.wordpress.com/plugins/ /var/www/html/wp-content/themes/vip/plugins
 fi
 
 # Checkout/update default theme
 echo
 echo "Checking out default theme..."
-if [ -d "wp-content/themes/pub/twentysixteen" ]; then
-  svn up wp-content/themes/pub/twentysixteen
+if [ -d "/var/www/html/wp-content/themes/pub/twentysixteen" ]; then
+  svn up /var/www/html/wp-content/themes/pub/twentysixteen
 else
-  mkdir -p wp-content/themes/pub
-  svn co https://wpcom-themes.svn.automattic.com/twentysixteen wp-content/themes/pub/twentysixteen
+  mkdir -p /var/www/html/wp-content/themes/pub
+  svn co https://wpcom-themes.svn.automattic.com/twentysixteen /var/www/html/wp-content/themes/pub/twentysixteen
 fi
 
 # Clone Jetpack
 echo
 echo "Cloning Jetpack..."
-if [ -d "wp-content/plugins/jetpack" ]; then
-  cd wp-content/plugins/jetpack
+if [ -d "/var/www/html/wp-content/plugins/jetpack" ]; then
+  cd /var/www/html/wp-content/plugins/jetpack
   git reset --hard
   git pull
   cd -
 else
-  git clone -b master-stable https://github.com/Automattic/jetpack.git wp-content/plugins/jetpack
+  git clone -b master-stable https://github.com/Automattic/jetpack.git /var/www/html/wp-content/plugins/jetpack
 fi
 
 
