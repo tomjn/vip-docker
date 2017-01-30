@@ -4,7 +4,9 @@ FROM php:fpm
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     libmemcached-dev \
-    curl
+    curl \
+    git \
+    subversion
 
 RUN yes | pecl install xdebug \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
