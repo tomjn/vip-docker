@@ -28,7 +28,7 @@ wp core download --allow-root --path=/var/www/html/wordpress
 if ! $(wp core is-installed --allow-root --path=/var/www/html/wordpress); then
     wp core multisite-install \
         --allow-root \
-        --path=/usr/src/wordpress \
+        --path=/var/www/wordpress \
         --subdomains \
         --url=${WP_DOMAIN} \
         --title="Docker WordPress" \
