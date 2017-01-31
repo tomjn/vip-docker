@@ -14,9 +14,9 @@ services:
             WORDPRESS_DB_PASSWORD: wordpress
             WORDPRESS_DB_NAME: wordpress
             WORDPRESS_DB_USER: wordpress
-            WP_DOMAIN: wp.local
+            WP_DOMAIN: vip.local
             WP_ADMIN_USER: wordpress
-            WP_EMAIL: wordpress@wp.local
+            WP_EMAIL: wordpress@vip.local
             XDEBUG_CONFIG: remote_host={{YOUR_LOCAL_IP_ADDRESS}}
             PHP_IDE_CONFIG: serverName=vip.local
     nginx:

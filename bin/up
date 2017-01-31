@@ -14,4 +14,4 @@ echo
 echo "Done"
 
 echo
-grep "wp.local" /etc/hosts > /dev/null || echo 'Be sure to add `127.0.0.1 wp.local` to your /etc/hosts file'
+grep "vip.local" /etc/hosts > /dev/null || echo 'Be sure to add `127.0.0.1 vip.local` to your /etc/hosts file'
