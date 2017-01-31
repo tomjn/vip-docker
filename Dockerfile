@@ -33,7 +33,7 @@ RUN yes | pecl install xdebug \
 COPY .docker/php.ini /usr/local/etc/php/conf.d/wordpress.ini
 
 COPY .docker/wp-config.php /var/www/html/wordpress
-VOLUME /var/www/html/wordpress
+#VOLUME /var/www/html/wordpress
 WORKDIR /var/www/html/wordpress
 
 # Install wp-cli
