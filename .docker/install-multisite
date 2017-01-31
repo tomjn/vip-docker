@@ -23,10 +23,12 @@ done
 
 echo "Database is available. Continuing"
 
-if ! $(wp core is-installed --allow-root --path=/usr/src/wordpress); then
+wp core download --allow-root --path=/var/www/html/wordpress
+
+if ! $(wp core is-installed --allow-root --path=/var/www/html/wordpress); then
     wp core multisite-install \
         --allow-root \
-        --path=/usr/src/wordpress \
+        --path=/var/www/wordpress \
         --subdomains \
         --url=${WP_DOMAIN} \
         --title="Docker WordPress" \
@@ -35,5 +37,42 @@ if ! $(wp core is-installed --allow-root --path=/usr/src/wordpress); then
         --admin_email=${WP_EMAIL} \
         --skip-email
 fi
+
+# Ensure the plugin and theme directories exist
+mkdir -p /var/www/html/wp-content/themes
+mkdir -p /var/www/html/wp-content/plugins
+
+# Checkout/update VIP plugins
+echo
+echo "Checking out VIP Plugins..."
+if [ -d "/var/www/html/wp-content/themes/vip/plugins" ]; then
+  svn up /var/www/html/wp-content/themes/vip/plugins
+else
+  mkdir -p /var/www/html/wp-content/themes/vip
+  svn co https://vip-svn.wordpress.com/plugins/ /var/www/html/wp-content/themes/vip/plugins
+fi
+
+# Checkout/update default theme
+echo
+echo "Checking out default theme..."
+if [ -d "/var/www/html/wp-content/themes/pub/twentysixteen" ]; then
+  svn up /var/www/html/wp-content/themes/pub/twentysixteen
+else
+  mkdir -p /var/www/html/wp-content/themes/pub
+  svn co https://wpcom-themes.svn.automattic.com/twentysixteen /var/www/html/wp-content/themes/pub/twentysixteen
+fi
+
+# Clone Jetpack
+echo
+echo "Cloning Jetpack..."
+if [ -d "/var/www/html/wp-content/plugins/jetpack" ]; then
+  cd /var/www/html/wp-content/plugins/jetpack
+  git reset --hard
+  git pull
+  cd -
+else
+  git clone -b master-stable https://github.com/Automattic/jetpack.git /var/www/html/wp-content/plugins/jetpack
+fi
+
 
 php-fpm -F

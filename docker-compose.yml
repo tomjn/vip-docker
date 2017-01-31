@@ -6,6 +6,7 @@ services:
             - mysql
             - memcached
         volumes:
+            - "./wordpress:/var/www/html/wordpress"
             - "./wp-content:/var/www/html/wp-content"
             - "./wp-config:/var/www/html/wp-config:ro"
         environment:
@@ -16,10 +17,12 @@ services:
             WP_DOMAIN: wp.local
             WP_ADMIN_USER: wordpress
             WP_EMAIL: wordpress@wp.local
-
+            XDEBUG_CONFIG: remote_host={{YOUR_LOCAL_IP_ADDRESS}}
+            PHP_IDE_CONFIG: serverName=vip.local
     nginx:
         image: nginx:mainline
         volumes:
+            - "./wordpress:/var/www/html/wordpress:ro"
             - "./wp-content:/var/www/html/wp-content:ro"
             - ".docker/nginx.template:/etc/nginx/conf.d/wordpress.template:ro"
         volumes_from:

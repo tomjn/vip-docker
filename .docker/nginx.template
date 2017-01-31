@@ -2,7 +2,7 @@ server {
 	listen $NGINX_PORT default;
 	server_name _;
 
-	root /usr/src/wordpress;
+	root /var/www/html/wordpress;
 	index index.php index.html;
 
 	# Block all requests to hidden files
