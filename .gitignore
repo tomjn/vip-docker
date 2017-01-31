@@ -4,6 +4,8 @@ wp-content/uploads
 wp-content/upgrade
 wp-config/secrets.php
 
+wordpress
+
 # Database
 .data
 
