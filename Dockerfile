@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y \
       libmemcached-dev \
       libpng12-dev \
       libpq-dev \
+      git \
+      subversion \
       mariadb-client \
     && rm -rf /var/lib/apt/lists/* 
 
@@ -33,8 +35,7 @@ RUN yes | pecl install xdebug \
 COPY .docker/php.ini /usr/local/etc/php/conf.d/wordpress.ini
 
 COPY .docker/wp-config.php /var/www/html/wordpress/
-#VOLUME /var/www/html/wordpress
-WORKDIR /var/www/html/wordpress
+WORKDIR /var/www/html/wordpress/
 
 # Install wp-cli
 RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar \
